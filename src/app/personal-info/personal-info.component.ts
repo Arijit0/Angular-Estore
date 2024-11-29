@@ -8,11 +8,10 @@ import { MasterService } from '../services/master.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-personal-info',
-  standalone: true,
-  imports: [SidebarComponent, CommonModule, HeadComponent,FormsModule,ReactiveFormsModule],
-  templateUrl: './personal-info.component.html',
-  styleUrl: './personal-info.component.css'
+    selector: 'app-personal-info',
+    imports: [SidebarComponent, CommonModule, HeadComponent, FormsModule, ReactiveFormsModule],
+    templateUrl: './personal-info.component.html',
+    styleUrl: './personal-info.component.css'
 })
 export class PersonalInfoComponent {
 

@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterLink, RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
 import { MasterService } from '../services/master.service';
 
 @Component({
-  selector: 'app-sidebar',
-  standalone: true,
-  imports: [RouterLink,RouterModule,CommonModule],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+    selector: 'app-sidebar',
+    standalone: true,
+    imports: [CommonModule],
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
 

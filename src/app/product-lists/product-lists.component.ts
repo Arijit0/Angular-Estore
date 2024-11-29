@@ -6,11 +6,10 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-lists',
-  standalone: true,
-  imports: [NgxSkeletonLoaderModule,CommonModule],
-  templateUrl: './product-lists.component.html',
-  styleUrl: './product-lists.component.css'
+    selector: 'app-product-lists',
+    imports: [NgxSkeletonLoaderModule, CommonModule],
+    templateUrl: './product-lists.component.html',
+    styleUrl: './product-lists.component.css'
 })
 export class ProductListsComponent implements OnChanges {
 

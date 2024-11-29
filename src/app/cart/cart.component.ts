@@ -8,11 +8,10 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [HeadComponent,FormsModule,CommonModule,NgxSkeletonLoaderModule],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+    selector: 'app-cart',
+    imports: [HeadComponent, FormsModule, CommonModule, NgxSkeletonLoaderModule],
+    templateUrl: './cart.component.html',
+    styleUrl: './cart.component.css'
 })
 export class CartComponent implements OnInit {
 

@@ -5,11 +5,10 @@ import { MasterService } from '../../services/master.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-head',
-  standalone: true,
-  imports: [RouterLink,FormsModule,CommonModule],
-  templateUrl: './head.component.html',
-  styleUrl: './head.component.css'
+    selector: 'app-head',
+    imports: [RouterLink, FormsModule, CommonModule],
+    templateUrl: './head.component.html',
+    styleUrl: './head.component.css'
 })
 export class HeadComponent {
 

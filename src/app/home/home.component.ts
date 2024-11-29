@@ -6,11 +6,10 @@ import { MasterService } from '../services/master.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [HeadComponent, CategoryComponent, ProductListsComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+    selector: 'app-home',
+    imports: [HeadComponent, CategoryComponent, ProductListsComponent],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.css'
 })
 export class HomeComponent {
 

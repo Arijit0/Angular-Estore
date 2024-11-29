@@ -9,11 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 import { getAuth, sendEmailVerification } from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [HeadComponent,CommonModule,ReactiveFormsModule,RouterLink],
-  templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+    selector: 'app-signup',
+    imports: [HeadComponent, CommonModule, ReactiveFormsModule, RouterLink],
+    templateUrl: './signup.component.html',
+    styleUrl: './signup.component.css'
 })
 export class SignupComponent {
 

@@ -8,11 +8,10 @@ import { MasterService } from '../services/master.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [HeadComponent,ReactiveFormsModule,CommonModule,RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+    selector: 'app-login',
+    imports: [HeadComponent, ReactiveFormsModule, CommonModule, RouterLink],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css'
 })
 export class LoginComponent {
 

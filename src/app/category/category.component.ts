@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
-  selector: 'app-category',
-  standalone: true,
-  imports: [NgxSkeletonLoaderModule],
-  templateUrl: './category.component.html',
-  styleUrl: './category.component.css'
+    selector: 'app-category',
+    imports: [NgxSkeletonLoaderModule],
+    templateUrl: './category.component.html',
+    styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit{
 

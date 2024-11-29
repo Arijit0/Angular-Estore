@@ -8,11 +8,10 @@ import { CommonModule } from '@angular/common';
 import { MasterService } from '../services/master.service';
 
 @Component({
-  selector: 'app-product-details',
-  standalone: true,
-  imports: [HeadComponent, CategoryComponent,CommonModule,RouterLink],
-  templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css'
+    selector: 'app-product-details',
+    imports: [HeadComponent, CategoryComponent, CommonModule, RouterLink],
+    templateUrl: './product-details.component.html',
+    styleUrl: './product-details.component.css'
 })
 export class ProductDetailsComponent {
 
