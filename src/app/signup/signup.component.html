@@ -1,0 +1,61 @@
+<app-head></app-head>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow p-4">
+          <h3 class="text-center mb-3">Signup</h3>
+          <form [formGroup]="authForm" (ngSubmit)="onContactFormSubmit()">
+            <div class="form-group mb-3">
+              <label class="mb-2" for="emailOrPhone">Email</label>
+              <input
+              id="contact"
+              formControlName="email"
+              type="text"
+              class="form-control"
+              placeholder="Enter Email ID"
+              [class.is-invalid]="contact?.touched && contact?.invalid"
+              [class.is-valid]="contact?.touched && contact?.valid"
+              />
+              <span class="invalid-feedback"
+              *ngIf="contact?.touched && contact?.invalid">
+              Please enter valid Email ID
+              </span>
+            </div>
+            <div class="form-group mb-3">
+              <label class="mb-2" for="password">Password</label>
+              <input
+              id="password"
+              formControlName="password"
+              type="password"
+              class="form-control"
+              placeholder="Enter Password"
+              [class.is-invalid]="password?.touched && password?.invalid"
+              [class.is-valid]="password?.touched && password?.valid"
+              />
+              <span class="invalid-feedback"
+              *ngIf="password?.touched && password?.invalid">
+                Please enter valid 6 digit Password
+              </span>
+            </div>
+            <button [disabled]="authForm.invalid" type="submit" class="btn btn-primary text-white fw-bold w-100">
+              Continue
+            </button>
+          </form>
+
+          <p class="text-center mt-3">
+            Existing User?
+            <a routerLink="/login">
+              Log in
+            </a>
+          </p>
+
+    <!-- otp.component.html -->
+        <!-- <span>Resend OTP in {{ countdownValue }} seconds</span>
+        <button (click)="resetOtpTimer()" class="btn btn-primary">
+        Resend OTP
+        </button> -->
+
+        </div>
+      </div>
+    </div>
+  </div>

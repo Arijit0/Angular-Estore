@@ -1,0 +1,27 @@
+
+.main {
+  position: relative;
+}
+.product-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  img {
+    max-height: 400px;
+  }
+
+  button {
+    font-weight: 600;
+  }
+
+  .wishlist-icon {
+    position: absolute;
+    top: 12px;
+    right: 25%;
+    font-size: 1.5rem;
+    color: #757575;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    opacity: 0.2;
+  }

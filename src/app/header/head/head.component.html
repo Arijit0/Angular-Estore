@@ -1,0 +1,99 @@
+<header>
+    <div class="wrapper pt-2 pb-2">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" routerLink="/">
+                        <img data-toggle="tooltip" data-placement="bottom" title="Flipkart" src="assets/images/app-logo.svg" alt="app-logo" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <form class="d-flex searchbar" role="search">
+                        <input class="form-control me-2" type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" title="Search for Products, Brands and More"
+                            name="search" autocomplete="off" placeholder="Search for Products, Brands and More" value=""
+                            aria-label="Search">
+                    </form>
+    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+                        <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                            <div routerLink="/login" class="nav-item d-flex align-items-center login-holder" (mouseenter)="mouseEnter()"
+                                (mouseleave)="mouseLeave()">
+    
+                                <div routerLink="login" class="login" data-toggle="tooltip" data-placement="bottom" title="Login">
+                                    <a class="nav-link  d-flex align-items-center">
+                                        <img class="me-2 user-icon" src="assets/images/user-icon.svg" alt="user-icon"
+                                            width="24" height="24" />
+                                        <span *ngIf="!isUserLoggedIn">Login</span>
+                                        <div class="username-holder">
+                                            <span class="username" *ngIf="isUserLoggedIn">{{userDetails.firstName}}</span>
+                                        </div>
+                                        <img class="ms-2 chevron" src="assets/images/chevron.svg" alt="chevron" width="12"
+                                            height="12" />
+                                    </a>
+                                </div>
+    
+                                
+                                <div *ngIf="isHovering" class="card" style="width: 18rem;">
+                                    <ul class="list-group list-group-flush">
+                                        <a *ngIf="!isUserLoggedIn" class="list-group-item d-flex justify-content-between" >
+                                            <span>New customer?</span>
+                                            <span routerLink="/signup">Sign Up</span>
+                                        </a>
+                                        <a routerLink="/personal-info"  class="profile">
+                                            <li>
+                                                <img class="me-2 user-icon" src="assets/images/user-icon.svg"
+                                                    alt="user-icon" width="18" height="18" />
+                                                <span>My Profile</span>
+                                            </li>
+                                        </a>
+                                        <a  class="orders">
+                                            <li>
+                                                <img class="me-2 user-icon" src="assets/images/orders-icon.svg"
+                                                    alt="orders-icon" width="18" height="18" />
+                                                <span>Orders</span>
+                                            </li>
+                                        </a>
+                                        <a  class="wishlist">
+                                            <li>
+                                                <img class="me-2 user-icon" src="assets/images/wishlist-icon.svg"
+                                                    alt="wishlist-icon" width="18" height="18" />
+                                                <span>Wishlist</span>
+                                            </li>
+                                        </a>
+                                        <a *ngIf="isUserLoggedIn" (click)="logOut()" class="logout">
+                                            <li>
+                                                <img class="me-2 user-icon" src="assets/images/logout.svg"
+                                                    alt="logout-icon" width="18" height="18" />
+                                                <span>Logout</span>
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                
+    
+                            </div>
+                            @if (showCartIcon) {
+                                <li class="nav-item cart-holder" data-toggle="tooltip" data-placement="bottom"
+                                title="Cart">
+                                <a class="nav-link d-flex align-items-center" [routerLink]="['/viewcart']">
+                                    <img class="me-2 cart-icon" src="assets/images/cart-icon.svg" alt="cart-icon" width="24"
+                                        height="24" />
+                                        @if (cartItemCount > 0) {
+                                            <div class="cart-item-count">{{cartItemCount}}</div>
+                                        }
+                                    <span>Cart</span>
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

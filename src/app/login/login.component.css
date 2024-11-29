@@ -1,0 +1,18 @@
+.card {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.timer {
+  margin-top: 20px;
+}
+
+.customTimerORlink {
+  color: #2874f0;
+  font-weight: 500;
+  cursor: pointer;
+}

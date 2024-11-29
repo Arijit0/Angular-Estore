@@ -1,0 +1,21 @@
+.card {
+    margin: 0 16px; 
+    background-color: var(--header-background-color);
+    font-size: var(--font-size);
+    font-weight: 600;
+}
+
+.category {
+    cursor: pointer;
+}
+
+.card .title {
+    text-transform: capitalize;
+}
+
+ngx-skeleton-loader {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    margin: 20px;
+}

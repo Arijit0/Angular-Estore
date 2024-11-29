@@ -1,1 +1,121 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    /* colors */
+    --header-background-color: #FFFF;
+    --store-background-color: rgba(241, 242, 244, 1.00);
+    --searchbar-background-color: #f0f5ff;
+    --black: #000000;
+
+    /* searchbar width */
+    --lg-max-width: 768px;
+
+    /* Font size */
+    --font-size: 16px;
+}
+
+/* Css reset  code */
+
+html {
+    box-sizing: border-box;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* optimizeLegibility
+    The browser emphasizes legibility over rendering speed and geometric precision. This enables kerning and optional ligatures. */
+}
+
+
+html, body { 
+    height: 100%;
+    font-size: 14px;
+    background-color: var(--store-background-color);
+}
+body {
+    color: var(--black);
+    margin: 0 auto;
+    font-weight: 400;
+    width: 100%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+a {
+    text-decoration: none;
+}
+
+/* Common classes */
+
+.rating-rate-holder {
+    column-gap: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .rating-rate {
+    display: flex;
+    background-color: #388e3c;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px 6px 5px 5px;
+    align-items: center;
+  }
+  .rating-star {
+    margin: 0px 0 0 2px;
+    height: 13px;
+  }
+  .rating-count {
+    color: #878787;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  .flipkart-assured {
+    width: 60px;
+  }
+
+  .flipkart-assured img {
+    width: 100%;
+  }
+
+  .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #388e3c;
+  }
+  .original-price {
+    font-size: 0.9rem;
+    color: #757575;
+    text-decoration: line-through;
+    margin-left: 5px;
+  }
+  .category-name {
+    font-size: 0.9rem;
+    color: #757575;
+    margin-bottom: 5px;
+  }
+
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

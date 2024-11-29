@@ -1,0 +1,103 @@
+.wrapper {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    background-color: var(--header-background-color);
+    font-size: var(--font-size);
+    overflow: visible;
+    z-index: 1000;
+}
+
+
+.navbar-brand {
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+.searchbar {
+    width: 100%;
+    max-width: var(--lg-max-width);
+    height: 40px;
+}
+
+.navbar input {
+    background-color: var(--searchbar-background-color);
+}
+
+.nav-item {
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.navbar .login .chevron {
+    transform: rotate(0deg);
+    transition: transform .3s ease-in-out;
+}
+
+.navbar .login :hover {
+    background: #2a55e5;
+    border-color: #2a55e5;
+    border-radius: 8px;
+}
+
+.navbar .login :hover span {
+    color: #fff;
+}
+
+.navbar .login :hover .chevron {
+    filter: invert(100%) sepia(69%) saturate(0) hue-rotate(132deg) brightness(114%) contrast(101%);
+    transform: rotate(180deg);
+}
+
+.navbar .login :hover > .user-icon {
+    filter: invert(100%)  saturate(0);
+}
+
+.card li {
+    padding: 8px 12px;
+    color: #000;
+}
+
+.card .profile :hover,
+.card .orders :hover,
+.card .wishlist :hover {
+    background: #fafafa;
+}
+
+.card {
+    position: absolute;
+    top: 100%;
+    list-style: none;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, .2);
+    z-index: 100;
+    transform: translate(0, -7%);
+}
+
+.cart-holder{
+    position: relative;
+}
+
+.cart-item-count {
+    position: absolute;
+    left: 30px;
+    top: 0px;
+    text-align: center;
+    border-radius: 7px;
+    width: 18px;
+    height: 18px;
+    background-color: #ff6161;
+    border: 1px solid #fff;
+    font-weight: 400;
+    color: #f0f0f0;
+    line-height: 16px;
+    font-size: 12px;
+}
+.username {
+    text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 108px;
+    display: block;
+}

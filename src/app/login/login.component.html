@@ -1,0 +1,65 @@
+<app-head></app-head>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card shadow p-4">
+          <h3 class="text-center mb-3">Login</h3>
+          <form class="needs-validation" [formGroup]="authForm" (ngSubmit)="onLoginFormSubmit()">
+            <div class="form-group mb-3">
+              <label class="mb-2" for="emailOrPhone">Email</label>
+              <input
+              id="contact"
+              formControlName="email"
+              type="text"
+              class="form-control"
+              placeholder="Enter Email ID"
+              [class.is-invalid]="contact?.touched && contact?.invalid"
+              />
+              <div
+              *ngIf="contact?.touched && contact?.invalid"
+              class="invalid-feedback"
+            >
+              Please enter a valid email.
+            </div>
+            </div>
+            <div class="form-group mb-3">
+              <label class="mb-2" for="otp">Password</label>
+              <input
+              id="otp"
+              formControlName="password"
+              type="text"
+              class="form-control"
+              placeholder="Enter Password"
+              [class.is-invalid]="password?.touched && password?.invalid"
+              />
+              <div
+              *ngIf="password?.touched && password?.invalid"
+              class="invalid-feedback"
+            >
+              Password must be at least 6 characters long.
+            </div>
+            </div>
+            <button [disabled]="authForm.invalid" type="submit" class="btn btn-primary text-white fw-bold w-100">
+              Login
+            </button>
+          </form>
+
+          <p class="text-center mt-3">
+            New to Flipkart?
+            <a routerLink="/signup">
+              Create an account
+            </a>
+          </p>
+
+    <!-- otp.component.html -->
+        <!-- <span>Resend OTP in {{ countdownValue }} seconds</span>
+        <button (click)="resetOtpTimer()" class="btn btn-primary">
+        Resend OTP
+        </button> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="recaptcha-container"></div>

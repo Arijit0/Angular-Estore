@@ -1,0 +1,25 @@
+<div class="card mt-2">
+    <div class="row text-center">
+        
+            @if (!isCategory) {
+                <div class="">
+                <ngx-skeleton-loader
+                count="4"
+                [theme]="{
+                'width.%': widthHeightSizeInPixels,
+                'height.px': widthHeightSizeInPixels,
+                'border-radius': '10px'
+                }"
+                >
+                </ngx-skeleton-loader>
+            </div>
+            }
+        @else {
+            @for (item of categories; track $index) {
+                <div class="col-xl-3 p-3 category">
+                    <div class="title" (click) = getProductsBycategory(item)>{{item}}</div>
+                </div>
+            }
+        }
+    </div>
+</div>

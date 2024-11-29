@@ -1,0 +1,283 @@
+<app-head></app-head>
+<div class="d-flex container">
+    <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+    <!-- Content Area -->
+    <div class="main flex-grow-1 ps-3 mt-4">
+    <div class="content-container card">
+        <!-- <h3>{{ activeSection | titlecase }}</h3> -->
+        <ng-container [ngSwitch]="activeSection">
+          <!-- Personal Information -->
+          <div *ngSwitchCase="'account'">
+
+            <div class="personal-info-holder">
+              <div class="row">
+                <h4 class="col-xl-4">Personal Information</h4>
+                <button
+                type="button"
+                class="btn btn-primary col-xl-8"
+                (click)="toggleEdit('personal-form')"
+                *ngIf="!isEditingPersonalForm"
+              >
+                Edit
+              </button>
+              </div>
+              <form [formGroup]="personalInfoForm" (ngSubmit)="onContactFormSubmit()" class="personal-info">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    class="form-control"
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder="Enter your first name"
+                  />
+                </div>
+            
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    class="form-control"
+                    formControlName="lastName"
+                    name="lastName"
+                    placeholder="Enter your last name"
+                  />
+                </div>
+            
+                <div class="form-group">
+                  <label>Gender</label>
+                  <div class="form-check">
+                    <input
+                    formControlName="gender"
+                      class="form-check-input"
+                      type="radio"
+                      id="male"
+                      value="male"
+                    />
+                    <label class="form-check-label" for="male">Male</label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                    formControlName="gender"
+                      class="form-check-input"
+                      type="radio"
+                      id="female"
+                      value="female"
+                    />
+                    <label class="form-check-label" for="female">Female</label>
+                  </div>
+                </div>
+                
+                <!-- Edit and Cancel Buttons -->
+                <div class="mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancel('personal-form')"
+                    *ngIf="isEditingPersonalForm"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                  type="submit"
+                  class="btn btn-success ms-4"
+                  *ngIf="isEditingPersonalForm"
+                >
+                  Save
+                </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="Email-info-holder">
+              <div class="row">
+                <h4 class="col-xl-4">Email Address</h4>
+                <button
+                type="button"
+                class="btn btn-primary col-xl-8"
+                (click)="toggleEdit('email')"
+                *ngIf="!isEditingEmailForm"
+              >
+                Edit
+              </button>
+              </div>
+              <form [formGroup]="emailInfoForm" (ngSubmit)="onEmailFormSubmit()" class="personal-info">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="form-control"
+                    formControlName="email"
+                    name="email"
+                    placeholder="Enter your Email Address"
+                    [class.is-invalid]="email?.touched && email?.invalid"
+                    [class.is-valid]="email?.touched && email?.valid"
+                  />
+                </div>
+
+
+    <!-- Verification Status -->
+    <div class="mt-3 d-flex align-items-center">
+      <p class="text-muted m-0">
+        Status: 
+        <span
+          [ngClass]="{
+            'text-success': isEmailVerified,
+            'text-danger': !isEmailVerified
+          }"
+        >
+          {{ isEmailVerified ? 'Verified' : 'Not Verified' }}
+        </span>
+      </p>
+      <button
+        *ngIf="!isEmailVerified"
+        type="button"
+        class="btn btn-link"
+        (click)="emailVerify()"
+      >
+        Verify
+      </button>
+    </div>
+
+    <!-- (click)="sendVerificationEmail()" -->
+
+                
+                <!-- Edit and Cancel Buttons -->
+                <div class="mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancel('email')"
+                    *ngIf="isEditingEmailForm"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                  type="submit"
+                  class="btn btn-success ms-4"
+                  *ngIf="isEditingEmailForm"
+                >
+                  Save
+                </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="mobile-info-holder">
+              <div class="row">
+                <h4 class="col-xl-4">Mobile Number</h4>
+                <button
+                type="button"
+                class="btn btn-primary col-xl-8"
+                (click)="toggleEdit('mobile')"
+                *ngIf="!isEditingMobileForm"
+              >
+                Edit
+              </button>
+              </div>
+              <form [formGroup]="mobileInfoForm" (ngSubmit)="onMobileFormSubmit()" class="personal-info">
+                <div class="form-group">
+                  <label for="email">Mobile Number</label>
+                  <input
+                    type="number"
+                    id="mobile"
+                    class="form-control"
+                    formControlName="mobile"
+                    name="mobile"
+                    placeholder="Enter your Mobile Number"
+                  />
+                </div>
+                
+                <!-- Edit and Cancel Buttons -->
+                <div class="mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="cancel('mobile')"
+                    *ngIf="isEditingMobileForm"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                  type="submit"
+                  class="btn btn-success ms-4"
+                  *ngIf="isEditingMobileForm"
+                >
+                  Save
+                </button>
+                </div>
+              </form>
+            </div>
+
+            
+                              <!-- Changing Email requires a password  / This is  a password Modal -->
+
+                
+                              <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                  <div class="modal-content">
+                                  <form [formGroup]="passwordForm" (ngSubmit)="onPasswordFormSubmit()" class="password-form">
+                                    <div class="modal-header"> 
+                                      <h5 class="modal-title" id="passwordModalLabel fw-bold">Please enter your password</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+              
+                                      
+              
+                                        <div class="form-group mb-3">
+                                          <label class="mb-2" for="password">Password</label>
+                                          <input
+                                          id="password"
+                                          formControlName="password"
+                                          type="password"
+                                          name="password"
+                                          class="form-control"
+                                          placeholder="Enter Password"
+                                          [class.is-invalid]="password?.touched && password?.invalid"
+                                          [class.is-valid]="password?.touched && password?.valid"
+                                          />
+                                          <span class="invalid-feedback"
+                                          *ngIf="password?.touched && password?.invalid">
+                                            Please enter valid 6 digit Password
+                                          </span>
+                                        </div>
+
+              
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button [disabled]="passwordForm.invalid" type="submit" class="btn btn-primary">update</button>
+                                    </div>
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+              
+                               <!-- Changing Email requires a password  / This is  a password Modal -->
+
+          </div>
+          <!-- My Orders -->
+          <div *ngSwitchCase="'my-orders'">
+            <p>This is the My Orders section.</p>
+          </div>
+          <!-- Manage Address -->
+          <div *ngSwitchCase="'manage-address'">
+            <p>This is the Manage Address section.</p>
+          </div>
+          <!-- Wishlist -->
+          <div *ngSwitchCase="'wishlist'">
+            <p>This is the Wishlist section.</p>
+          </div>
+          <!-- Default -->
+          <div *ngSwitchDefault>
+            <p>Please select a section from the sidebar.</p>
+          </div>
+        </ng-container>
+    </div>
+    </div>
+
+</div>
