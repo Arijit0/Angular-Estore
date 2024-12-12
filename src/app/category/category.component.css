@@ -1,4 +1,4 @@
-.card {
+/* .card {
     margin: 0 16px; 
     background-color: var(--header-background-color);
     font-size: var(--font-size);
@@ -18,4 +18,60 @@ ngx-skeleton-loader {
     flex-direction: row;
     gap: 100px;
     margin: 20px;
+} */
+
+/* Card Styling */
+.card {
+    margin: 0 16px; 
+    background-color: var(--header-background-color);
+    font-size: var(--font-size);
+    font-weight: 600;
+}
+
+/* Category Item Styling */
+.category {
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+/* Title inside each category item */
+.card .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.cat-items-holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Skeleton Loader */
+ngx-skeleton-loader {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Reduced gap to fit smaller devices */
+    margin: 20px 0;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 1199px) {
+    .category {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 991px) {
+    .category {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 767px) {
+    .category {
+        padding: 6px;
+    }
+    .cat-items-holder {
+        flex-direction: column;
+    }
 }

@@ -1,10 +1,11 @@
-.content-container {
-    padding: 20px;
-  }
 
-  .personal-info {
+.manage-address-holder,
+.personal-info-holder,
+.Email-info-holder,
+.mobile-info-holder,
+.wishlist-holder,
+.oder-summery-holder {
     padding: 20px;
-    border-radius: 8px;
   }
   
   .form-group {
@@ -12,6 +13,65 @@
     width: 50%;
   }
   
-  button {
+  .edit {
     width: 100px;
   }
+
+  .empty-wishlist img,
+  .empty-address img,
+  .empty-order-list img {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    max-height: 250px;
+  }
+
+  .wishlist-img {
+    border-bottom: 1px solid #ddd;
+    max-height: 200px; 
+    object-fit: contain;
+  }
+  .wishlist-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  .wishlist-title:hover {
+    color: var(--productTitleHoverColor);
+    cursor: pointer;
+  }
+  .wishlist-text {
+    font-size: 0.9rem;
+  }
+  .wishlist-footer {
+    border-top: 1px solid #ddd;
+  }
+  .productList-item-img {
+    width: 50%;
+    object-fit: contain;
+    margin: auto;
+  }
+
+
+    /* Media Queries */
+    @media (max-width: 1024px) {
+      .manage-address-holder,
+      .personal-info-holder,
+      .Email-info-holder,
+      .mobile-info-holder,
+      .wishlist-holder,
+      .oder-summery-holder {
+          padding-left: 50px;
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+        }
+
+        .oder-summery-holder {
+          padding: 10px;
+        }
+    }
+
+
+
+
+  

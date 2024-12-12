@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../services/master.service';
 import { Router } from '@angular/router';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-category',
-    imports: [NgxSkeletonLoaderModule],
+    imports: [NgxSkeletonLoaderModule,CommonModule],
     templateUrl: './category.component.html',
     styleUrl: './category.component.css'
 })
 export class CategoryComponent implements OnInit{
 
-  categories: string[] = [];
+  categories: any[] = [];
   categoryName: string = "";
   widthHeightSizeInPixels = 50;
   isCategory: boolean = false;
 
-  constructor(private http: MasterService,private router: Router) {}
+  constructor(private http: MasterService,private router: Router,private firestore: AngularFirestore,) {}
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -24,13 +26,18 @@ export class CategoryComponent implements OnInit{
 
 
   getAllCategories() {
-    this.http.getCategories().subscribe((res: any) => {
+
     setTimeout(() => {
-      this.categories = res;
-      this.isCategory = true;
-    },1000)
-      
-    })
+      this.http.getCategories().subscribe({
+        next: (data) => {
+          this.categories = data;
+          this.isCategory = true;
+        }, error: (error) => {
+          console.error('Error fetching products:', error);
+        }
+      })
+    }, 1000);
+
   }
 
   getProductsBycategory(item: string) {

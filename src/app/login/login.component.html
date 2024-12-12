@@ -10,9 +10,10 @@
               <input
               id="contact"
               formControlName="email"
-              type="text"
+              type="email"
               class="form-control"
               placeholder="Enter Email ID"
+              [class.is-valid]="contact?.touched && contact?.valid"
               [class.is-invalid]="contact?.touched && contact?.invalid"
               />
               <div
@@ -27,9 +28,10 @@
               <input
               id="otp"
               formControlName="password"
-              type="text"
+              type="password"
               class="form-control"
               placeholder="Enter Password"
+              [class.is-valid]="password?.touched && password?.valid"
               [class.is-invalid]="password?.touched && password?.invalid"
               />
               <div

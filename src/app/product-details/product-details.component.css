@@ -1,27 +1,148 @@
-
+/* 
 .main {
   position: relative;
+  padding: 15px;
 }
 .product-title {
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 18px;
   }
   
-  img {
+  .product-img {
+    object-fit: contain;
     max-height: 400px;
   }
 
   button {
     font-weight: 600;
-  }
+  } */
 
+  .main {
+    position: relative;
+    padding: 15px;
+  }
+  
+  .product-title {
+    font-size: 18px;
+  }
+  
+  .product-img {
+    object-fit: contain;
+    max-height: 400px;
+  }
+  
+  button {
+    font-weight: 600;
+  }
+  
   .wishlist-icon {
     position: absolute;
-    top: 12px;
-    right: 25%;
-    font-size: 1.5rem;
-    color: #757575;
+    top: 10px;
+    right: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
-    opacity: 0.2;
   }
+  
+  .wishlist-added {
+    fill: #FF0000; /* Red color when the product is added to wishlist */
+  }
+  
+  /* Product Container Responsive Adjustments */
+  @media (max-width: 767px) {
+    .product-title {
+      font-size: 16px;
+    }
+    
+    .product-details-holder {
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 100px;
+    }
+    
+    .rating-rate-holder {
+      font-size: 14px;
+    }
+  
+    .price {
+      font-size: 18px;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .product-img {
+      max-height: 250px; /* Reduce image size on smaller screens */
+    }
+  
+    .product-title {
+      font-size: 14px;
+    }
+  
+    .rating-rate-holder {
+      font-size: 12px;
+    }
+  
+    .price {
+      font-size: 16px;
+    }
+  
+    .btn {
+      font-size: 14px;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .product-img {
+      max-height: 350px;
+    }
+
+    .product-details-holder {
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .product-title {
+      font-size: 16px;
+    }
+  
+    .rating-rate-holder {
+      font-size: 14px;
+    }
+  
+    .price {
+      font-size: 20px;
+    }
+  }
+  
+  @media (min-width: 1025px) {
+    .product-img {
+      max-height: 400px;
+    }
+
+    .product-details-holder {
+      gap: 50px;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .product-title {
+      font-size: 18px;
+    }
+  
+    .rating-rate-holder {
+      font-size: 16px;
+    }
+  
+    .price {
+      font-size: 22px;
+    }
+  }
+  

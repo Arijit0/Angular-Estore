@@ -1,4 +1,4 @@
-<div class="card mt-2">
+<!-- <div class="card mt-2">
     <div class="row text-center">
         
             @if (!isCategory) {
@@ -17,9 +17,35 @@
         @else {
             @for (item of categories; track $index) {
                 <div class="col-xl-3 p-3 category">
-                    <div class="title" (click) = getProductsBycategory(item)>{{item}}</div>
+                    <div class="title" (click) = getProductsBycategory(item.categoryName)>{{item.categoryName}}</div>
                 </div>
             }
         }
     </div>
-</div>
+</div> -->
+
+<div class="card mt-2">
+    <div class="row text-center">
+      <!-- Skeleton Loader (If Data is Loading) -->
+      <div *ngIf="!isCategory">
+        <ngx-skeleton-loader
+          count="4"
+          [theme]="{
+            'width.%': widthHeightSizeInPixels,
+            'height.px': widthHeightSizeInPixels,
+            'border-radius': '10px'
+          }">
+        </ngx-skeleton-loader>
+      </div>
+      
+      <!-- Category Items (If Data is Available) -->
+      <div *ngIf="isCategory" class="cat-items-holder">
+        <div *ngFor="let item of categories; let index = index" class="col-6 col-sm-4 col-md-3 col-xl-3 p-3 category">
+          <div class="title" (click)="getProductsBycategory(item.categoryName)">
+            {{ item.categoryName }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -80,7 +80,9 @@ export class SignupComponent {
             // Store user data in localStorage
             this.masterService.storeUser(user);
           
-            this.router.navigateByUrl('/personal-info');
+            this.masterService.syncCartToFirestore(); // Sync cart on login
+
+            this.router.navigateByUrl('/');
 
           })
           .catch((error) => {

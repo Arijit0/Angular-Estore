@@ -1,0 +1,102 @@
+  .accordion-button {
+    font-weight: bold;
+  }
+  .accordion-body {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 15px;
+  }
+
+  .price-details {
+    position: sticky;
+    top: 10px;
+  }
+  .total-amount {
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .product {
+    display: flex;
+    align-items: center;
+    height: auto;
+  }
+  .quantity {
+    width: 20%;
+  }
+  .card-body:first-child {
+    border-top: none;
+  }
+
+  .card-body {
+    border-top: 1px solid #f0f0f0;
+  }
+
+/* fireworks */
+
+.fireworks-container {
+  position: fixed; /* Fix the fireworks container to the screen */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  /* background: #000; */
+  pointer-events: none; /* Allow clicking through the fireworks container */
+  z-index: 9999; /* Ensure it sits on top of other elements */
+}
+
+/* Responsiveness */
+
+@media (max-width: 1024px) {
+  .main {
+    gap: 100px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .price-details {
+    position: relative;
+    margin-top: 20px;
+  }
+  .accordion-item .accordion-button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion-item .accordion-body {
+    font-size: 0.9rem;
+  }
+  .card {
+    margin: 10px 0;
+  }
+  .main {
+    gap: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  .accordion-item .accordion-button {
+    font-size: 0.8rem;
+  }
+  .product img {
+    max-width: 80px;
+  }
+  .image-holder {
+    justify-content: center;
+    width: 100%;
+  }
+  .description-holder {
+    text-align: center;
+  }
+  .rating-rate-holder {
+    justify-content: center;
+  }
+  .quantity {
+    width: 100%;
+  }
+  .card-body {
+    justify-content: center;
+  }
+
+}

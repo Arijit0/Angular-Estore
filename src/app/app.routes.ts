@@ -7,6 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { authGuard } from './auth.guard';
 import { authRedirectGuardGuard } from './auth-redirect-guard.guard';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 export const routes: Routes = [
     {path: '', pathMatch:'full', component: HomeComponent},
@@ -17,7 +18,10 @@ export const routes: Routes = [
     { path: 'login', pathMatch:'full', component: LoginComponent, canActivate: [authRedirectGuardGuard] },
     { path: 'signup', pathMatch:'full', component: SignupComponent, canActivate: [authRedirectGuardGuard] },
     { path: 'personal-info/:section', component: PersonalInfoComponent, canActivate: [authGuard] },
-    { path: '', redirectTo: '/personal-info/account', pathMatch: 'full' },
-    { path: '**', redirectTo: '/personal-info/account' },
-    { path: '**', redirectTo: "" }
+    { path: 'checkout', component: CheckoutComponent, canActivate: [authGuard],data: { requiredInit: true }, }
+    // { path: '', redirectTo: '/personal-info/account', pathMatch: 'full' },
+    // { path: '**', redirectTo: '/personal-info/account' },
+    // { path: '**', redirectTo: "" }
 ];
+
+// { queryParams: { init: 'view=FLIPKART', loginFlow: 'false' }

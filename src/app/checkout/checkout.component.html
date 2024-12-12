@@ -1,0 +1,155 @@
+<app-head></app-head>
+<div class="container mt-4">
+
+  <!-- Fireworks Container -->
+  <div *ngIf="isOrderSuccessful" id="fireworks-container" class="fireworks-container"></div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">{{ loadingMessage }}</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!isLoading" class="row main">
+    <!-- Left Accordion Section -->
+    <div class="col-xl-8">
+      <div class="accordion" id="checkoutAccordion">
+        <!-- Login Details -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="loginDetailsHeader">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#loginDetails" aria-expanded="true" aria-controls="loginDetails">
+              Login Details
+            </button>
+          </h2>
+          <div id="loginDetails" class="accordion-collapse collapse show" aria-labelledby="loginDetailsHeader" data-bs-parent="#checkoutAccordion">
+            <div class="accordion-body">
+              <div class="d-flex align-items-center mb-3">
+                <span class="text-muted">Name:</span>
+                <span class="fw-bold ms-2">{{ checkoutItems.personalDetails.firstName }} {{ checkoutItems.personalDetails.lastName }}</span>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <span class="text-muted">Mobile Number:</span>
+                <span class="fw-bold ms-2">+{{ checkoutItems.personalDetails.mobile }}</span>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <span class="text-muted">Email Address:</span>
+                <span class="fw-bold ms-2">{{ checkoutItems.userEmail }}</span>
+              </div>
+              <span class="text-warning">
+                Please note that upon clicking "Logout," you will lose all items in the cart and will be redirected to the Flipkart home page.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delivery Address -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="deliveryAddressHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#deliveryAddress" aria-expanded="false" aria-controls="deliveryAddress">
+              Delivery Address
+            </button>
+          </h2>
+          <div id="deliveryAddress" class="accordion-collapse collapse" aria-labelledby="deliveryAddressHeader" data-bs-parent="#checkoutAccordion">
+            <div class="accordion-body">
+              <div class="text-muted">
+                {{ checkoutItems.personalDetails.address.city }},
+                {{ checkoutItems.personalDetails.address.mainAddress }},
+                {{ checkoutItems.personalDetails.address.pinCode }},
+                {{ checkoutItems.personalDetails.address.state }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="orderSummaryHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#orderSummary" aria-expanded="false" aria-controls="orderSummary">
+              Order Summary
+            </button>
+          </h2>
+          <div id="orderSummary" class="accordion-collapse collapse" aria-labelledby="orderSummaryHeader" data-bs-parent="#checkoutAccordion">
+            <div class="accordion-body">
+              <div class="card-body py-3 product" *ngFor="let product of checkoutItems.products">
+                <div class="row">
+                  <div class="col-md-2 ms-4 me-4 d-flex align-items-center image-holder">
+                    <img [src]="product.itemImage" class="img-fluid product-image" [alt]="product.itemName" />
+                  </div>
+                  <div class="col-md-9 mr-auto d-flex flex-column justify-content-center description-holder">
+                    <h5 class="card-title mt-2">{{ product.itemName }}</h5>
+                    <p class="category-name">{{ product.itemCategory }}</p>
+                    <div class="rating-rate-holder mt-3 mb-2">
+                      <div class="rating-rate">
+                        {{ product.itemRatingRate }}
+                        <svg class="rating-star" xmlns="http://www.w3.org/2000/svg" width="13">
+                          <path fill="#fff" d="M6.5 9.439l-3.674 2.23.94-4.26-3.21-2.883 4.254-.404L6.5.112l1.69 4.01 4.254.404-3.21 2.882.94 4.26z"></path>
+                        </svg>
+                      </div>
+                      <div class="rating-count">{{ product.itemRatingCount }}</div>
+                    </div>
+                    <p class="price">
+                      ₹{{ product.itemPrice }} <span class="original-price">₹ 21999</span>
+                    </p>
+                    <div class="input-group quantity">
+                      <input type="number" class="form-control text-center" [disabled]="true" [value]="product.quantity" min="1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="paymentOptionsHeader">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paymentOptions" aria-expanded="false" aria-controls="paymentOptions">
+              Payment Options
+            </button>
+          </h2>
+          <div id="paymentOptions" class="accordion-collapse collapse" aria-labelledby="paymentOptionsHeader" data-bs-parent="#checkoutAccordion">
+            <div class="accordion-body">
+              <div class="text-muted">
+                Order confirmation email will be sent to <span class="fw-bold">{{ checkoutItems.userEmail }}</span>
+              </div>
+              <form [formGroup]="paymentForm" (ngSubmit)="onPaymentFormSubmit()" class="mt-4">
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" formControlName="paymentMethod" id="cod" value="cod" />
+                  <label class="form-check-label" for="cod">Cash on Delivery</label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" formControlName="paymentMethod" id="razorpay" value="razorpay" />
+                  <label class="form-check-label" for="razorpay">Razorpay</label>
+                </div>
+                <button type="submit" class="btn btn-success">Place Order</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Checkout Price Card -->
+    <div class="col-xl-4 price-details">
+      <div class="card">
+        <div class="card-header">PRICE DETAILS</div>
+        <div class="card-body">
+          <div class="final-price d-flex justify-content-between">
+            <p>Price (items)</p>
+            <p>₹{{ checkoutItems.totalAmount | number: '1.2-2' }}</p>
+          </div>
+          <div class="delivery d-flex justify-content-between">
+            <p>Delivery Charges</p>
+            <p class="text-success">Free</p>
+          </div>
+          <hr />
+          <div class="total-amount d-flex justify-content-between">
+            <p>Total Payable</p>
+            <p>₹{{ checkoutItems.totalAmount | number: '1.2-2' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

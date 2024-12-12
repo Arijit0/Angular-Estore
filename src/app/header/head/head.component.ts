@@ -1,30 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterModule } from '@angular/router';
 import { MasterService } from '../../services/master.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-head',
-    imports: [RouterLink, FormsModule, CommonModule],
+    imports: [FormsModule, CommonModule,RouterModule],
     templateUrl: './head.component.html',
     styleUrl: './head.component.css'
 })
-export class HeadComponent {
+export class HeadComponent implements OnInit{
 
   userDetails: any;
   isUserLoggedIn: boolean = false;
 
-  constructor(private router: Router,private masterService: MasterService){
-    this.showingCartIcon();
-    this.fectUserdetails();
-  }
+  isLoading: boolean = true; // Initially loading
+
+  activeSection = 'account'; // Default section
+
+  HeaderForCheckoutPageStatus: boolean = false;
 
   isHovering: boolean = false;
   searchTerm: any = "";
   showCartIcon = true;
   cartItems: any;
   cartItemCount: number = 0;
+
+  constructor(private router: Router,
+    private masterService: MasterService,
+    private route: ActivatedRoute
+  ) {
+    this.showingCartIcon();
+    this.fectUserdetails();
+  }
+  ngOnInit(): void {
+    this.applyHeaderForCheckoutPage();
+  }
+   
+  applyHeaderForCheckoutPage() {
+    this.HeaderForCheckoutPageStatus = this.masterService.getHeaderStatusForCheckout();
+    console.log(this.HeaderForCheckoutPageStatus);
+  }
 
   mouseEnter() {
     this.isHovering = true;
@@ -39,15 +56,29 @@ export class HeadComponent {
   }
 
   showingCartIcon() {
+    this.isLoading = true;
     this.showCartIcon = !this.masterService.isCartPage();
     this.cartItemsCount();
   }
 
-  cartItemsCount() {
-    // this.cartItems = JSON.parse(localStorage.getItem('product') || '{}');
-    if(this.masterService.cartItems()) {
-      this.cartItems = this.masterService.cartItems();
-      this.cartItemCount = this.cartItems.length;
+  // async cartItemsCount() {
+  //   // this.cartItems = JSON.parse(localStorage.getItem('product') || '{}');
+  //   if(await this.masterService.fetchCartItems()) {
+  //     this.masterService.fetchCartItems().then((items) => {
+  //       this.cartItemCount = items.length;
+  //     });
+  //   }
+  // }
+
+  async cartItemsCount() {
+    try {
+      const items = await this.masterService.fetchCartItems();
+      this.cartItemCount = items.length;
+      this.isLoading = false;
+    } catch (error) {
+      console.error('Error fetching cart items count:', error);
+      this.cartItemCount = 0; // Fallback to 0 in case of an error
+      this.isLoading = false;
     }
   }
 
@@ -62,12 +93,13 @@ export class HeadComponent {
           next: (details) => {
             if (details) {
               this.userDetails = {
-                firstName: details.firstName || '',
+                firstName: details.firstName || 'Guest',
                 lastName: details.lastName || '',
                 gender: details.gender || 'male'
               };
               console.log('User details fetched successfully:', details);
               this.isUserLoggedIn = true;
+              this.isLoading = false;
             }else {
               this.userDetails = {
                 firstName: 'Guest',
@@ -75,6 +107,7 @@ export class HeadComponent {
                 gender: 'male'
               };
               this.isUserLoggedIn = true;
+              this.isLoading = false;
             }
           },
           error: (err) => {
@@ -82,7 +115,11 @@ export class HeadComponent {
             // Handle error, e.g., show an error message to the user
             alert('Unable to fetch user details. Please try again later.');
             this.isUserLoggedIn = false;
-          }
+            this.isLoading = false;
+          },
+          complete: () => {
+            this.isLoading = false; // Stop the spinner after loading is complete
+          },
         });
         }
       }

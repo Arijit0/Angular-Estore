@@ -1,69 +1,77 @@
-    <div class="main d-flex flex-column card mt-4">
-          <!-- Display "Hello, Username" with gender-specific photo -->
-          <div class="greeting row align-items-center border-bottom">
-            <div class="text-center col-xl-4">
-              <img
-              *ngIf="userDetails.gender === 'male'"
-              src="assets/images/profile-pic-male.svg"
-              alt="Male Avatar"
-              class="avatar"
-            />
-            <img
-            *ngIf="userDetails.gender === 'female'"
-            src="assets/images/profile-pic-female.svg"
-            alt="Female Avatar"
-            class="avatar"
-            />
-            </div>
-            <div class="holder col-xl-8">
-              <p class="hello">Hello,</p>
-              <!-- <h4 class="">{{ username }}</h4> -->
-              <h4 class="username">{{ userDetails.firstName}} {{ userDetails.lastName}}</h4>
-            </div>
-          </div>
-        <ul class="nav flex-column mt-4 border-bottom">
-          <li class="nav-item">
-            <a 
-            class="nav-link"
-            [routerLink]="'/personal-info/account'"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >
-            Personal Information
-            </a>
-          </li>
-          <li class="nav-item">
-            <a 
-            class="nav-link"
-            [routerLink]="'/personal-info/my-orders'"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >
-            My Orders
-            </a>
-          </li>
-          <li class="nav-item">
-            <a 
-            class="nav-link" 
-            [routerLink]="'/personal-info/manage-address'" 
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >
-            Manage Address
-            </a>
-          </li>
-          <li class="nav-item">
-            <a 
-            class="nav-link" 
-            [routerLink]="'/personal-info/wishlist'"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >
-            Wishlist
-            </a>
-          </li>
-        </ul>
-        <button (click)="logOut()" class="btn btn-danger w-100 mt-4">Logout</button>
+<div class="main d-flex flex-column card mt-4">
+    <!-- Display "Hello, Username" with gender-specific photo -->
+    <div class="greeting row align-items-center border-bottom">
+      <div class="text-center col-xl-4">
+        <!-- Show skeleton loader for image -->
+      <div *ngIf="isLoading" class="skeleton-avatar mb-4"></div>
+        <img
+        *ngIf="!isLoading && userDetails.gender === 'male'"
+        src="assets/images/profile-pic-male.svg"
+        alt="Male Avatar"
+        class="avatar"
+      />
+      <img
+      *ngIf="!isLoading && userDetails.gender === 'female'"
+      src="assets/images/profile-pic-female.svg"
+      alt="Female Avatar"
+      class="avatar"
+      />
+      </div>
+      <div class="holder col-xl-8">
+         <!-- Show skeleton loader for text -->
+        <p class="hello" *ngIf="isLoading">
+          <span class="skeleton-text" style="width: 50%;"></span>
+        </p>
+        <p *ngIf="!isLoading" class="hello">Hello,</p>
+        <h4 *ngIf="isLoading" class="username">
+          <span class="skeleton-text" style="width: 70%;"></span>
+        </h4>
+        <h4 *ngIf="!isLoading" class="username">{{ userDetails.firstName}} {{ userDetails.lastName}}</h4>
+      </div>
     </div>
+  <ul class="nav flex-column mt-4 border-bottom">
+    <li class="nav-item">
+      <a 
+      class="nav-link"
+      [routerLink]="'/personal-info/account'"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }" 
+      >
+      Personal Information
+      </a>
+    </li>
+    <li class="nav-item">
+      <a 
+      class="nav-link"
+      [routerLink]="'/personal-info/my-orders'"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >
+      My Orders
+      </a>
+    </li>
+    <li class="nav-item">
+      <a 
+      class="nav-link" 
+      [routerLink]="'/personal-info/manage-address'" 
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >
+      Manage Address
+      </a>
+    </li>
+    <li class="nav-item">
+      <a 
+      class="nav-link" 
+      [routerLink]="'/personal-info/wishlist'"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >
+      Wishlist
+      </a>
+    </li>
+  </ul>
+  <button (click)="logOut()" class="btn btn-danger w-100 mt-4">Logout</button>
+</div>
   
   

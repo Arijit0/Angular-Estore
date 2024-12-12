@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { HeadComponent } from '../header/head/head.component';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -20,7 +20,7 @@ export class LoginComponent {
   constructor(
     private fireAuthService: AngularFireAuth, 
     private masterService: MasterService,
-    private router: Router,
+    @Inject(Router) private router: Router,
     private toastr: ToastrService
   ) {
     this.initForm();
@@ -64,7 +64,9 @@ export class LoginComponent {
         // Store user data in localStorage
         this.masterService.storeUser(user);
 
-        this.router.navigateByUrl('/personal-info');
+        this.masterService.syncCartToFirestore(); // Sync cart on login
+
+        this.router.navigateByUrl('');
     }
     } catch (error) {
       this.toastr.error('Email or password is incorrect', 'Failed');
